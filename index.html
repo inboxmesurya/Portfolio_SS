@@ -53,6 +53,7 @@
     html {
       scroll-behavior: smooth;
       font-size: 16px;
+      overflow-x: hidden;
     }
 
     body {
@@ -1219,6 +1220,14 @@
       flex-shrink: 0;
     }
 
+    .a-card-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--gold);
+      stroke-width: 1.5;
+      fill: none;
+    }
+
     .a-card-ttl {
       font-family: var(--ff-serif);
       font-size: 1.05rem;
@@ -1231,6 +1240,11 @@
       font-size: .84rem;
       color: var(--muted);
       line-height: 1.55;
+    }
+
+    .about-card > div:last-child {
+      flex: 1;
+      min-width: 0;
     }
 
     /* ═══════════════════════════════════════════════
@@ -1757,8 +1771,18 @@
     }
 
     .lab-node-icon {
-      font-size: 1.5rem;
       margin-bottom: .5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lab-node-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--gold);
+      stroke-width: 1.5;
+      fill: none;
     }
 
     .lab-node-name {
@@ -1798,6 +1822,14 @@
       justify-content: center;
       font-size: 1.5rem;
       flex-shrink: 0;
+    }
+
+    .lab-hack-badge svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--gold);
+      stroke-width: 1.5;
+      fill: none;
     }
 
     .lab-hack-ttl {
@@ -1875,6 +1907,14 @@
       align-items: center;
       justify-content: center;
       font-size: 1.1rem;
+    }
+
+    .ach-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--gold);
+      stroke-width: 1.5;
+      fill: none;
     }
 
     .ach-title {
@@ -1989,6 +2029,13 @@
     .c-link-val {
       font-size: .9rem;
       color: rgba(245, 241, 235, .7);
+      word-break: break-all;
+      overflow-wrap: break-word;
+    }
+
+    .c-link > div:nth-child(2) {
+      flex: 1;
+      min-width: 0;
     }
 
     .c-link-arr {
@@ -2156,7 +2203,16 @@
     }
 
     .footer-heart {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       color: var(--accent);
+    }
+
+    .footer-heart svg {
+      width: 10px;
+      height: 10px;
+      fill: currentColor;
     }
 
     /* ═══════════════════════════════════════════════
@@ -2222,6 +2278,10 @@
         display: flex;
       }
 
+      .nav-inner {
+        padding: 0 1.5rem;
+      }
+
       .nav-links {
         position: fixed;
         top: 0;
@@ -2232,7 +2292,7 @@
         flex-direction: column;
         background: rgba(17, 17, 17, .97);
         backdrop-filter: blur(20px);
-        padding: calc(var(--nav-h)+2rem) 2rem 2rem;
+        padding: calc(var(--nav-h) + 2rem) 2rem 2rem;
         gap: 2rem;
         transform: translateX(100%);
         transition: transform .4s var(--ease);
@@ -2259,17 +2319,49 @@
       }
 
       .hero-name {
-        font-size: 3.5rem;
+        font-size: clamp(2.4rem, 8vw, 4.5rem);
+      }
+
+      .hero-tagline br, .hero-name br, .contact-head br, .s-title br {
+        display: none;
+      }
+
+      .depth-marker {
+        left: 1.5rem;
+        bottom: 2rem;
+      }
+
+      .hero-scroll {
+        right: 1.5rem;
+        bottom: 2rem;
       }
 
       .ach-grid {
         grid-template-columns: 1fr;
       }
 
-
-
       .section {
         padding: 5rem 1.5rem;
+      }
+
+      .skills-cat-card {
+        padding: 1.25rem 1.5rem;
+      }
+
+      .proj-card {
+        padding: 1.5rem;
+      }
+
+      .ach-card {
+        padding: 1.5rem;
+      }
+
+      .lab-diagram {
+        padding: 1.5rem;
+      }
+
+      .c-link {
+        padding: 1rem;
       }
 
       .about-stats {
@@ -2286,11 +2378,20 @@
       .c5,
       .c6,
       .c12 {
-        grid-column: span 2;
+        grid-column: span 1 !important;
       }
 
       .lab-spokes {
         grid-template-columns: 1fr;
+      }
+
+      .edu-row {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .edu-badge {
+        grid-column: 1;
       }
     }
 
@@ -2299,11 +2400,27 @@
         padding: 4rem 1.2rem;
       }
 
+      .nav-inner {
+        padding: 0 1.2rem;
+      }
+
       .hero-portrait {
         display: none;
       }
 
+      .hero-name {
+        font-size: clamp(2rem, 9vw, 3rem);
+      }
 
+      .depth-marker {
+        left: 1.2rem;
+        bottom: 1.5rem;
+      }
+
+      .hero-scroll {
+        right: 1.2rem;
+        bottom: 1.5rem;
+      }
 
       .c2,
       .c3,
@@ -2311,7 +2428,7 @@
       .c5,
       .c6,
       .c12 {
-        grid-column: span 1;
+        grid-column: span 1 !important;
       }
 
       .about-stats {
@@ -2357,7 +2474,7 @@
         <div class="hud-ring inner-solid"></div>
 
         <canvas id="loader-hologram-canvas" width="220" height="220"
-          style="width: 220px; height: 220px; z-index: 10; position: relative;"></canvas>
+          style="width: 100%; height: 100%; max-width: 220px; max-height: 220px; z-index: 10; position: relative;"></canvas>
       </div>
 
       <!-- Center Pane: Branding, Diagnostics & Progress -->
@@ -2525,21 +2642,41 @@
         <!-- right -->
         <div class="about-sidebar rv-right">
           <div class="about-card">
-            <div class="a-card-icon">🎓</div>
+            <div class="a-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.9a2 2 0 0 0 1.66 0z" />
+                <path d="M6 18.8v-4L2 13v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-4 1.8v4" />
+                <path d="M12 14.5v6" />
+              </svg>
+            </div>
             <div>
               <div class="a-card-ttl">Education</div>
               <div class="a-card-sub">B.Tech AI & Data Science<br />Amrita Vishwa Vidyapeetham, Amritapuri</div>
             </div>
           </div>
           <div class="about-card">
-            <div class="a-card-icon">📍</div>
+            <div class="a-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
             <div>
               <div class="a-card-ttl">Based In</div>
               <div class="a-card-sub">Trivandrum, Kerala, India</div>
             </div>
           </div>
           <div class="about-card">
-            <div class="a-card-icon">🏅</div>
+            <div class="a-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="8" r="6" />
+                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+              </svg>
+            </div>
             <div>
               <div class="a-card-ttl">Athletics</div>
               <div class="a-card-sub">CISCE National 4×100m Relay — 3rd Place<br />CISCE Regional Long Jump — 2nd Place
@@ -2547,21 +2684,42 @@
             </div>
           </div>
           <div class="about-card">
-            <div class="a-card-icon">🥋</div>
+            <div class="a-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M4 2v6l8 4 8-4V2" />
+                <path d="M12 12v10" />
+                <path d="M8 15h8v2H8z" />
+                <path d="M10 17v4" />
+                <path d="M14 17v4" />
+              </svg>
+            </div>
             <div>
               <div class="a-card-ttl">Martial Arts</div>
               <div class="a-card-sub">Shotokan Karate — 1st Dan Black Belt<br />Shotokan Karate Association, India</div>
             </div>
           </div>
           <div class="about-card">
-            <div class="a-card-icon">🎹</div>
+            <div class="a-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M9 18V5l12-2v13" />
+                <circle cx="6" cy="18" r="3" />
+                <circle cx="18" cy="16" r="3" />
+              </svg>
+            </div>
             <div>
               <div class="a-card-ttl">Music</div>
               <div class="a-card-sub">Trinity College London — Grade 2 Piano<br />ABRSM London — Grade 2 Piano</div>
             </div>
           </div>
           <div class="about-card">
-            <div class="a-card-icon">👑</div>
+            <div class="a-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14" />
+              </svg>
+            </div>
             <div>
               <div class="a-card-ttl">Leadership</div>
               <div class="a-card-sub">Head Boy — St Thomas Residential School<br />Assistant Head Boy — 2022–2023</div>
@@ -2992,35 +3150,86 @@
             </div>
             <div class="lab-spokes">
               <div class="lab-node rv">
-                <div class="lab-node-icon">🧠</div>
+                <div class="lab-node-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path
+                      d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1 0-3.12 3 3 0 0 1 0-4.88 2.5 2.5 0 0 1 0-3.12A2.5 2.5 0 0 1 9.5 2Z" />
+                    <path
+                      d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 0-3.12 3 3 0 0 0 0-4.88 2.5 2.5 0 0 0 0-3.12A2.5 2.5 0 0 0 14.5 2Z" />
+                  </svg>
+                </div>
                 <div class="lab-node-name">Deep Learning</div>
                 <div class="lab-node-desc">Neural networks, pattern recognition, and model training using Python &
                   PyTorch concepts</div>
               </div>
               <div class="lab-node rv">
-                <div class="lab-node-icon">👁️</div>
+                <div class="lab-node-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </div>
                 <div class="lab-node-name">Computer Vision</div>
                 <div class="lab-node-desc">Object detection, YOLO architectures, and real-time visual inference</div>
               </div>
               <div class="lab-node rv">
-                <div class="lab-node-icon">🤖</div>
+                <div class="lab-node-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M12 8V4H8" />
+                    <rect width="16" height="12" x="4" y="8" rx="2" />
+                    <path d="M2 14h2" />
+                    <path d="M20 14h2" />
+                    <path d="M15 13v2" />
+                    <path d="M9 13v2" />
+                  </svg>
+                </div>
                 <div class="lab-node-name">Multi-Agent AI</div>
                 <div class="lab-node-desc">Designing autonomous agents that reason, collaborate, and make decisions
                 </div>
               </div>
               <div class="lab-node rv">
-                <div class="lab-node-icon">📡</div>
+                <div class="lab-node-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="2" />
+                    <path d="M12 2v4" />
+                    <path d="M12 18v4" />
+                    <path d="M4.93 4.93l2.83 2.83" />
+                    <path d="M16.24 16.24l2.83 2.83" />
+                    <path d="M2 12h4" />
+                    <path d="M18 12h4" />
+                    <path d="M4.93 19.07l2.83-2.83" />
+                    <path d="M16.24 7.76l2.83-2.83" />
+                  </svg>
+                </div>
                 <div class="lab-node-name">IoT + AI</div>
                 <div class="lab-node-desc">Embedded intelligence: bridging sensor data with machine learning models
                 </div>
               </div>
               <div class="lab-node rv">
-                <div class="lab-node-icon">📊</div>
+                <div class="lab-node-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <ellipse cx="12" cy="5" rx="9" ry="3" />
+                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+                    <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3" />
+                  </svg>
+                </div>
                 <div class="lab-node-name">Data Engineering</div>
                 <div class="lab-node-desc">Database design, SQL optimization, and data pipeline architecture</div>
               </div>
               <div class="lab-node rv">
-                <div class="lab-node-icon">🔬</div>
+                <div class="lab-node-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <ellipse cx="12" cy="12" rx="3" ry="9" transform="rotate(45 12 12)" />
+                    <ellipse cx="12" cy="12" rx="3" ry="9" transform="rotate(-45 12 12)" />
+                    <circle cx="12" cy="12" r="2" />
+                  </svg>
+                </div>
                 <div class="lab-node-name">Simulation</div>
                 <div class="lab-node-desc">FEA, thermal modelling, and computational analysis using ANSYS & MATLAB</div>
               </div>
@@ -3030,7 +3239,12 @@
 
         <!-- Hackathon highlight -->
         <div class="lab-hack rv">
-          <div class="lab-hack-badge">⚡</div>
+          <div class="lab-hack-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg>
+          </div>
           <div>
             <div class="lab-hack-ttl">Epochon Hackathon — ACM Student Chapter</div>
             <div class="lab-hack-sub">Competed in a team-based hackathon developing a concept for a <strong
@@ -3056,7 +3270,13 @@
 
         <div class="ach-card rv">
           <div class="ach-card-hd">
-            <div class="ach-icon">🏅</div>
+            <div class="ach-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="8" r="6" />
+                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+              </svg>
+            </div>
             <div class="ach-title">Sports & Athletics</div>
           </div>
           <div class="ach-item">
@@ -3072,7 +3292,12 @@
 
         <div class="ach-card rv">
           <div class="ach-card-hd">
-            <div class="ach-icon">👑</div>
+            <div class="ach-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14" />
+              </svg>
+            </div>
             <div class="ach-title">Leadership & Service</div>
           </div>
           <div class="ach-item">
@@ -3088,7 +3313,16 @@
 
         <div class="ach-card rv">
           <div class="ach-card-hd">
-            <div class="ach-icon">📜</div>
+            <div class="ach-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M19 17V5a2 2 0 0 0-2-2H4" />
+                <path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 0 1-2 2Z" />
+                <path d="M15 10H9" />
+                <path d="M15 14H9" />
+                <path d="M19 17H5a2 2 0 0 1-2-2V4" />
+              </svg>
+            </div>
             <div class="ach-title">Certifications</div>
           </div>
           <div class="ach-item">
@@ -3110,7 +3344,12 @@
 
         <div class="ach-card rv">
           <div class="ach-card-hd">
-            <div class="ach-icon">⚡</div>
+            <div class="ach-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+              </svg>
+            </div>
             <div class="ach-title">Hackathons & Events</div>
           </div>
           <div class="ach-item">
@@ -3286,7 +3525,6 @@
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-copy">© 2026 Surya Suresh · Trivandrum, Kerala</div>
-      <div class="footer-right">Crafted with <span class="footer-heart">♥</span>&nbsp;and precision</div>
     </div>
   </footer>
 
